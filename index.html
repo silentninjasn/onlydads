@@ -237,7 +237,7 @@ function friendly(error) {
 // ───── Data ─────
 async function loadAll() {
   const [p, d] = await Promise.all([
-    sb.from('od_posts').select('id,topic,body,created_at,author,od_profiles(name,specialty),od_replies(id,body,created_at,author,od_profiles(name)),od_respects(user_id)').order('created_at', { ascending: false }).limit(150),
+    sb.from('od_posts').select('id,topic,body,created_at,author,od_profiles:od_profiles!od_posts_author_fkey(name,specialty),od_replies(id,body,created_at,author,od_profiles:od_profiles!od_replies_author_fkey(name)),od_respects(user_id)').order('created_at', { ascending: false }).limit(150),
     sb.from('od_profiles').select('id,name,specialty,kids,city,bio,created_at').order('created_at'),
   ]);
   if (p.error || d.error) {
