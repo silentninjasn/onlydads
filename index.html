@@ -374,11 +374,15 @@ $('composer').addEventListener('submit', async e => {
   $('postText').value = ''; toast('Posted.'); loadAll();
 });
 
-sb.auth.onAuthStateChange(async (_event, s) => {
+// Supabase must not be called from inside this callback (it holds the auth lock and the call would hang),
+// so the follow-up work runs just after it.
+sb.auth.onAuthStateChange((_event, s) => {
   session = s;
-  admin = false;
-  if (s) { const { data } = await sb.rpc('od_is_admin'); admin = !!data; }
-  loadAll();
+  setTimeout(async () => {
+    admin = false;
+    if (s) { const { data } = await sb.rpc('od_is_admin'); admin = !!data; }
+    loadAll();
+  }, 0);
 });
 setInterval(() => { if (!document.hidden) loadAll(); }, 45000);
 </script>
