@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OnlyDads | The club for dads</title>
+<meta name="description" content="OnlyDads is a members-only club for dads: share tips, wins, questions and terrible dad jokes with dads who've been there.">
+<link rel="canonical" href="https://onlydads.fun/">
+<meta property="og:title" content="OnlyDads">
+<meta property="og:description" content="The members-only club for dads. Tips, wins, questions and terrible jokes.">
+<meta property="og:url" content="https://onlydads.fun/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://onlydads.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kaushan+Script&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root {
+  --bg: #f3f5f8; --surface: #ffffff; --surface-2: #f6f8fb; --fg: #14181d; --muted: #5f6873; --line: #dde2e8;
+  --blue: #1e90e0; --blue-2: #1677c2; --blue-ink: #ffffff; --tag-bg: #e7f2fc; --danger: #c2341f; --focus: #e08a1e;
+  --mast-bg: #ffffff; --mast-fg: #14181d; --mast-blue: #1e90e0; --mast-muted: #5f6873; --mast-line: #dde2e8;
+  --display: 'Archivo Black', 'Arial Black', 'Segoe UI', sans-serif;
+  --script: 'Kaushan Script', 'Brush Script MT', cursive;
+  --body: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --r: 12px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #0e1217; --surface: #161b22; --surface-2: #1b222b; --fg: #eef2f6; --muted: #9aa5b1; --line: #2a333e;
+  --blue: #4fb0f5; --blue-2: #3a9ae0; --blue-ink: #06121c; --tag-bg: #13283a; --danger: #ef7c66; --focus: #f2a54a;
+  color-scheme: dark; } }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15.5px; line-height: 1.5; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+
+.mast { background: var(--mast-bg); color: var(--mast-fg); border-bottom: 1px solid var(--mast-line);
+  padding: 22px max(16px, env(safe-area-inset-right)) 24px max(16px, env(safe-area-inset-left)); }
+.mast-in { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+.word { font-size: clamp(40px, 8vw, 70px); line-height: 1; margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; font-weight: 400; }
+.word .only { font-family: var(--display); letter-spacing: -0.02em; }
+.word .dads { font-family: var(--script); color: var(--mast-blue); font-size: 1.08em; margin-left: 0.06em; transform: rotate(-4deg); display: inline-block; }
+.word .tld { font-family: var(--body); font-weight: 700; font-size: 0.32em; color: var(--mast-muted); margin-left: 0.25em; }
+.tag { margin: 10px 0 0; font-weight: 500; color: var(--mast-muted); max-width: 48ch; }
+.acct { display: flex; align-items: center; gap: 10px; color: var(--mast-fg); }
+.acct .btn { background: #f3f5f8; border-color: var(--mast-line); color: var(--mast-fg); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left));
+  display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr); } }
+.col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; min-width: 0; }
+h2 { font-family: var(--display); font-weight: 400; font-size: 21px; margin: 0 0 4px; }
+.sub { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
+.label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.field { display: flex; flex-direction: column; min-width: 0; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+input[type=text], input[type=email], input[type=password], select, textarea { width: 100%; background: var(--surface-2); border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; min-width: 0; }
+textarea { resize: vertical; min-height: 84px; }
+input:focus, select:focus, textarea:focus { border-color: var(--blue); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 25%, transparent); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 8px 16px; font-weight: 600; cursor: pointer; }
+.btn:hover { border-color: var(--blue); }
+.btn.go { background: var(--blue); color: var(--blue-ink); border-color: transparent; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.link { background: none; border: 0; padding: 0; color: var(--muted); font-weight: 600; font-size: 13px; cursor: pointer; }
+.link:hover { color: var(--fg); text-decoration: underline; }
+.link.danger { color: var(--danger); }
+.seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px; margin-bottom: 14px; }
+.seg button { border: 0; background: none; border-radius: 999px; padding: 6px 14px; font-weight: 600; color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 2px rgba(0,0,0,0.12); }
+.err { color: var(--danger); font-size: 14px; margin: 8px 0 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.topic { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: var(--tag-bg); border-radius: 6px; padding: 2px 8px; }
+.post { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; }
+.av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 17px; flex: none; }
+.av.sm { width: 30px; height: 30px; font-size: 13px; }
+.who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.spec { color: var(--muted); font-size: 13px; }
+.when { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.body { margin: 6px 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.respect { border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 4px 12px; font-weight: 700; font-size: 13px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.respect[aria-pressed="true"] { background: var(--blue); color: var(--blue-ink); border-color: transparent; }
+.replies { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; border-left: 3px solid var(--line); padding-left: 12px; }
+.reply { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; }
+.reply .body { margin: 2px 0 4px; }
+.reply-form { display: flex; gap: 8px; }
+.reply-form input { flex: 1; }
+.roster { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.roster li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 10px; align-items: center; }
+.roster .av { width: 36px; height: 36px; font-size: 14px; }
+.roster .meta { color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+.rules { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 6px; }
+.empty { text-align: center; color: var(--muted); padding: 28px 12px; }
+.empty b { display: block; font-family: var(--display); font-weight: 400; font-size: 19px; color: var(--fg); margin-bottom: 4px; }
+.count { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-weight: 600; font-size: 14px; max-width: calc(100% - 32px); z-index: 20; }
+footer { text-align: center; color: var(--muted); font-size: 13px; padding: 0 16px 32px; }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="mast-in">
+    <div>
+      <h1 class="word" aria-label="OnlyDads"><span class="only">Only</span><span class="dads">Dads</span><span class="tld">.cum</span></h1>
+      <p class="tag">The members-only club for dads. Tips, wins, questions and terrible jokes, from dads who've been there.</p>
+    </div>
+    <div class="acct">
+      <span id="acctName"></span>
+      <button class="btn" id="signOutBtn" type="button" hidden>Sign out</button>
+      <button class="btn" id="signInTop" type="button" hidden>Sign in</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="col">
+    <!-- Sign in / sign up -->
+    <form id="authCard" class="card" hidden>
+      <div class="seg" role="group" aria-label="Sign in or join">
+        <button type="button" id="modeIn" aria-pressed="true">Sign in</button>
+        <button type="button" id="modeUp" aria-pressed="false">Join the club</button>
+      </div>
+      <div class="grid2">
+        <div class="field"><label class="label" for="aEmail">Email</label><input id="aEmail" type="email" autocomplete="email" required></div>
+        <div class="field"><label class="label" for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password" minlength="8" required></div>
+      </div>
+      <p class="err" id="authErr" hidden></p>
+      <div class="row" style="margin-top:14px; justify-content: space-between">
+        <span class="spec" id="authHint">Members only. Reading is free; posting needs an account.</span>
+        <button class="btn go" id="authBtn" type="submit">Sign in</button>
+      </div>
+    </form>
+
+    <!-- Profile (first sign-in, or editing) -->
+    <form id="joinCard" class="card" hidden>
+      <h2 id="joinTitle">Set up your dad profile</h2>
+      <p class="sub">This is what the other dads see. You can change it later.</p>
+      <div class="grid2">
+        <div class="field"><label class="label" for="jName">Dad name</label><input id="jName" type="text" maxlength="40" placeholder="Big Mike" required></div>
+        <div class="field"><label class="label" for="jSpec">Specialty</label><select id="jSpec"></select></div>
+        <div class="field"><label class="label" for="jKids">Kids</label><input id="jKids" type="text" maxlength="60" placeholder="2 kids, ages 7 and 4"></div>
+        <div class="field"><label class="label" for="jCity">Where</label><input id="jCity" type="text" maxlength="40" placeholder="Atlanta"></div>
+      </div>
+      <div class="field" style="margin-top:12px"><label class="label" for="jBio">About you</label><textarea id="jBio" maxlength="280" placeholder="Weekend griller, part-time taxi service, full-time thermostat guardian."></textarea></div>
+      <div class="row" style="margin-top:14px; justify-content: flex-end"><button class="btn" id="joinCancel" type="button" hidden>Cancel</button><button class="btn go" id="joinBtn" type="submit">Save profile</button></div>
+    </form>
+
+    <form id="composer" class="card" hidden>
+      <label class="label" for="postText">Share with the club</label>
+      <textarea id="postText" maxlength="1200" placeholder="What's working, what's not, or the joke you've been saving all week…"></textarea>
+      <div class="row" style="margin-top:10px; justify-content: space-between">
+        <div class="field" style="max-width:220px"><label class="label" for="postTopic">Topic</label><select id="postTopic"></select></div>
+        <button class="btn go" id="postBtn" type="submit">Post</button>
+      </div>
+    </form>
+
+    <div class="row" style="justify-content: space-between">
+      <div class="chips" id="filters" role="group" aria-label="Filter by topic"></div>
+      <span class="count" id="postCount"></span>
+    </div>
+    <div id="feed" class="col"><div class="card empty"><b>Loading the club…</b></div></div>
+  </div>
+
+  <aside class="col">
+    <section class="card" id="profileCard" hidden>
+      <h2>Your profile</h2>
+      <div id="profileView"></div>
+      <div class="row" style="margin-top:10px"><button class="link" id="editProfile" type="button">Edit profile</button></div>
+    </section>
+    <section class="card">
+      <h2>The dads</h2>
+      <p class="sub" id="memberCount">Members show up here once they join.</p>
+      <ul class="roster" id="roster"></ul>
+    </section>
+    <section class="card">
+      <h2>House rules</h2>
+      <ol class="rules">
+        <li>Be the dad you'd want in your corner.</li>
+        <li>No selling, no spam, no politics.</li>
+        <li>Keep kids' full names and photos off the board.</li>
+        <li>Dad jokes are mandatory. Groaning is optional.</li>
+      </ol>
+    </section>
+  </aside>
+</main>
+<footer>OnlyDads · onlydads.fun</footer>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+// Public key for the browser (safe to publish: every table is protected by row-level security).
+const sb = supabase.createClient('https://yzarcmrxrwjptzyzmnsg.supabase.co', 'sb_publishable_KD2zQFafRW5vFeIj8cZQ_A_mUawA6aQ');
+
+const SPECIALTIES = ['Grill master', 'Lawn guy', 'Fix-it dad', 'Family taxi', 'Bedtime storyteller', 'Thermostat guardian', 'Coach dad', 'Snack dispenser', 'New dad (send help)'];
+const TOPICS = [['tip', 'Tip'], ['win', 'Win'], ['question', 'Question'], ['rant', 'Rant'], ['joke', 'Dad joke'], ['grill', 'Grill & food']];
+const topicName = id => (TOPICS.find(t => t[0] === id) || ['', 'Post'])[1];
+const $ = id => document.getElementById(id);
+const h = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+for (const s of SPECIALTIES) $('jSpec').append(new Option(s, s));
+for (const [v, n] of TOPICS) $('postTopic').append(new Option(n, v));
+
+let session = null, me = null, admin = false, posts = [], dads = [], filter = 'all', mode = 'in', editing = false;
+const openReplies = new Set();
+
+function toast(t) { const e = $('toast'); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => e.hidden = true, 3200); }
+function ago(t) {
+  const s = Math.max(1, Math.round((Date.now() - new Date(t)) / 1000));
+  if (s < 60) return 'just now'; const m = Math.round(s / 60); if (m < 60) return m + 'm ago';
+  const hr = Math.round(m / 60); if (hr < 24) return hr + 'h ago'; const d = Math.round(hr / 24); if (d < 8) return d + 'd ago';
+  return new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+function avatar(id, name, cls) {
+  let n = 0; for (const c of String(id)) n = (n * 31 + c.charCodeAt(0)) >>> 0;
+  const a = h('div', 'av' + (cls ? ' ' + cls : ''), (name || '?').trim().charAt(0).toUpperCase());
+  a.style.background = `hsl(${n % 360} 55% 45%)`; a.setAttribute('aria-hidden', 'true'); return a;
+}
+function friendly(error) {
+  const m = (error && error.message) || '';
+  if (/Invalid login/i.test(m)) return 'That email and password don\'t match. Check them and try again.';
+  if (/already registered/i.test(m)) return 'That email already has an account. Sign in instead.';
+  if (/Slow down/i.test(m)) return 'Slow down, Dad. You can post again in a bit.';
+  if (/Password should/i.test(m)) return 'Use a password of at least 8 characters.';
+  return m || 'Something went wrong. Try again.';
+}
+
+// ───── Data ─────
+async function loadAll() {
+  const [p, d] = await Promise.all([
+    sb.from('od_posts').select('id,topic,body,created_at,author,od_profiles(name,specialty),od_replies(id,body,created_at,author,od_profiles(name)),od_respects(user_id)').order('created_at', { ascending: false }).limit(150),
+    sb.from('od_profiles').select('id,name,specialty,kids,city,bio,created_at').order('created_at'),
+  ]);
+  if (p.error || d.error) {
+    render(); // keep sign-in and the rest of the page working
+    $('feed').replaceChildren(Object.assign(h('div', 'card empty'), { textContent: 'The club couldn\'t load. Refresh the page to try again.' }));
+    return;
+  }
+  posts = p.data; dads = d.data;
+  me = session ? dads.find(x => x.id === session.user.id) || null : null;
+  render();
+}
+
+// ───── Render ─────
+function render() {
+  const signedIn = !!session;
+  $('signOutBtn').hidden = !signedIn; $('signInTop').hidden = signedIn;
+  $('acctName').textContent = me ? me.name : '';
+  $('authCard').hidden = signedIn;
+  $('joinCard').hidden = !(signedIn && (!me || editing));
+  $('joinCancel').hidden = !me;
+  $('composer').hidden = !(signedIn && me && !editing);
+
+  $('profileCard').hidden = !me;
+  if (me) {
+    const v = $('profileView'); v.replaceChildren();
+    const w = h('div', 'who'); w.append(h('b', '', me.name), h('span', 'spec', me.specialty)); v.append(w);
+    if (me.kids || me.city) v.append(h('div', 'spec', [me.kids, me.city].filter(Boolean).join(' · ')));
+    if (me.bio) v.append(h('p', 'body', me.bio));
+  }
+
+  const roster = $('roster'); roster.replaceChildren();
+  $('memberCount').textContent = dads.length ? `${dads.length} dad${dads.length === 1 ? '' : 's'} in the club.` : 'Members show up here once they join.';
+  for (const d of dads.slice(-40).reverse()) {
+    const li = h('li'); const box = h('div'); box.append(h('b', '', d.name), h('div', 'meta', [d.specialty, d.kids].filter(Boolean).join(' · ')));
+    li.append(avatar(d.id, d.name), box); roster.append(li);
+  }
+
+  const fw = $('filters'); fw.replaceChildren();
+  for (const [v, n] of [['all', 'All'], ...TOPICS]) { const b = h('button', 'chip', n); b.type = 'button'; b.setAttribute('aria-pressed', String(filter === v)); b.onclick = () => { filter = v; render(); }; fw.append(b); }
+
+  const shown = filter === 'all' ? posts : posts.filter(p => p.topic === filter);
+  $('postCount').textContent = posts.length ? `${shown.length} post${shown.length === 1 ? '' : 's'}` : '';
+  const feed = $('feed'); feed.replaceChildren();
+  if (!shown.length) {
+    const e = h('div', 'card empty'); e.append(h('b', '', posts.length ? 'Nothing in this topic yet' : 'The club\'s warming up the grill'),
+      document.createTextNode(posts.length ? 'Be the first dad to post one.' : (me ? 'Share the first post with the club.' : 'Join, then share the first post.')));
+    feed.append(e);
+  }
+  for (const p of shown) {
+    const name = p.od_profiles ? p.od_profiles.name : 'A dad';
+    const card = h('article', 'card'); const row = h('div', 'post'); const main = h('div'); main.style.minWidth = '0';
+    const who = h('div', 'who'); who.append(h('b', '', name));
+    if (p.od_profiles && p.od_profiles.specialty) who.append(h('span', 'spec', p.od_profiles.specialty));
+    who.append(h('span', 'when', ago(p.created_at)), h('span', 'topic', topicName(p.topic)));
+    main.append(who, h('p', 'body', p.body));
+    const acts = h('div', 'actions');
+    const n = p.od_respects.length, mine = session && p.od_respects.some(r => r.user_id === session.user.id);
+    const like = h('button', 'respect', `Respect${n ? ' · ' + n : ''}`); like.type = 'button';
+    like.setAttribute('aria-pressed', String(!!mine)); like.disabled = !me; like.title = me ? 'Give this dad some respect' : 'Join to give respect';
+    like.onclick = () => toggleRespect(p.id, mine); acts.append(like);
+    const rs = [...p.od_replies].sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    const rb = h('button', 'link', rs.length ? `${rs.length} repl${rs.length === 1 ? 'y' : 'ies'}` : 'Reply'); rb.type = 'button';
+    rb.onclick = () => { openReplies.has(p.id) ? openReplies.delete(p.id) : openReplies.add(p.id); render(); }; acts.append(rb);
+    if (session && (p.author === session.user.id || admin)) { const del = h('button', 'link danger', p.author === session.user.id ? 'Delete' : 'Remove'); del.type = 'button'; del.onclick = () => arm(del, () => removeRow('od_posts', p.id)); acts.append(del); }
+    main.append(acts);
+    if (openReplies.has(p.id)) {
+      const box = h('div', 'replies');
+      for (const r of rs) {
+        const rr = h('div', 'reply'); const rm = h('div'); rm.style.minWidth = '0'; const rn = r.od_profiles ? r.od_profiles.name : 'A dad';
+        const rw = h('div', 'who'); rw.append(h('b', '', rn), h('span', 'when', ago(r.created_at))); rm.append(rw, h('p', 'body', r.body));
+        if (session && (r.author === session.user.id || admin)) { const d = h('button', 'link danger', 'Delete'); d.type = 'button'; d.onclick = () => arm(d, () => removeRow('od_replies', r.id)); rm.append(d); }
+        rr.append(avatar(r.author, rn, 'sm'), rm); box.append(rr);
+      }
+      if (me) {
+        const f = h('form', 'reply-form'); const inp = h('input'); inp.type = 'text'; inp.maxLength = 600; inp.placeholder = 'Reply to ' + name; inp.id = 'reply-' + p.id; inp.setAttribute('aria-label', 'Your reply');
+        const go = h('button', 'btn', 'Reply'); go.type = 'submit';
+        f.onsubmit = async e => { e.preventDefault(); const t = inp.value.trim(); if (!t) return; go.disabled = true;
+          const { error } = await sb.from('od_replies').insert({ post_id: p.id, body: t }); go.disabled = false;
+          if (error) toast(friendly(error)); else { inp.value = ''; loadAll(); } };
+        f.append(inp, go); box.append(f);
+      } else box.append(h('span', 'spec', 'Sign in to reply.'));
+      main.append(box);
+    }
+    row.append(avatar(p.author, name), main); card.append(row); feed.append(card);
+  }
+}
+function arm(btn, run) {
+  if (btn.dataset.armed) return run();
+  btn.dataset.armed = '1'; const was = btn.textContent; btn.textContent = 'Sure? Click again';
+  setTimeout(() => { if (btn.isConnected) { btn.textContent = was; delete btn.dataset.armed; } }, 4000);
+}
+
+// ───── Actions ─────
+async function toggleRespect(postId, mine) {
+  const q = mine ? sb.from('od_respects').delete().match({ post_id: postId, user_id: session.user.id }) : sb.from('od_respects').insert({ post_id: postId });
+  const { error } = await q; if (error) toast(friendly(error)); loadAll();
+}
+async function removeRow(table, id) {
+  const { error } = await sb.from(table).delete().eq('id', id);
+  if (error) toast(friendly(error)); else { toast('Deleted.'); loadAll(); }
+}
+function setMode(m) {
+  mode = m; $('modeIn').setAttribute('aria-pressed', String(m === 'in')); $('modeUp').setAttribute('aria-pressed', String(m === 'up'));
+  $('authBtn').textContent = m === 'in' ? 'Sign in' : 'Join OnlyDads';
+  $('aPass').autocomplete = m === 'in' ? 'current-password' : 'new-password';
+  $('authHint').textContent = m === 'in' ? 'Members only. Reading is free; posting needs an account.' : 'Use a password of at least 8 characters.';
+  $('authErr').hidden = true;
+}
+$('modeIn').onclick = () => setMode('in'); $('modeUp').onclick = () => setMode('up');
+$('signInTop').onclick = () => { setMode('in'); $('aEmail').focus(); };
+$('authCard').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = $('aEmail').value.trim(), password = $('aPass').value;
+  $('authBtn').disabled = true; $('authErr').hidden = true;
+  const { data, error } = mode === 'in' ? await sb.auth.signInWithPassword({ email, password }) : await sb.auth.signUp({ email, password });
+  $('authBtn').disabled = false;
+  if (error) { $('authErr').textContent = friendly(error); $('authErr').hidden = false; return; }
+  if (mode === 'up' && !data.session) { $('authErr').textContent = 'Check your email for a link to finish joining.'; $('authErr').hidden = false; }
+});
+$('signOutBtn').onclick = () => sb.auth.signOut();
+$('editProfile').onclick = () => {
+  $('jName').value = me.name; $('jSpec').value = me.specialty || SPECIALTIES[0]; $('jKids').value = me.kids; $('jCity').value = me.city; $('jBio').value = me.bio;
+  $('joinTitle').textContent = 'Edit your profile'; editing = true; render(); $('jName').focus();
+};
+$('joinCancel').onclick = () => { editing = false; render(); };
+$('joinCard').addEventListener('submit', async e => {
+  e.preventDefault();
+  const row = { id: session.user.id, name: $('jName').value.trim(), specialty: $('jSpec').value, kids: $('jKids').value.trim(), city: $('jCity').value.trim(), bio: $('jBio').value.trim() };
+  if (!row.name) return;
+  $('joinBtn').disabled = true;
+  const { error } = await sb.from('od_profiles').upsert(row);
+  $('joinBtn').disabled = false;
+  if (error) return toast(friendly(error));
+  toast(editing ? 'Profile saved.' : 'Welcome to the club, ' + row.name + '.'); editing = false; loadAll();
+});
+$('composer').addEventListener('submit', async e => {
+  e.preventDefault();
+  const body = $('postText').value.trim(); if (!body) return;
+  $('postBtn').disabled = true;
+  const { error } = await sb.from('od_posts').insert({ topic: $('postTopic').value, body });
+  $('postBtn').disabled = false;
+  if (error) return toast(friendly(error));
+  $('postText').value = ''; toast('Posted.'); loadAll();
+});
+
+sb.auth.onAuthStateChange(async (_event, s) => {
+  session = s;
+  admin = false;
+  if (s) { const { data } = await sb.rpc('od_is_admin'); admin = !!data; }
+  loadAll();
+});
+setInterval(() => { if (!document.hidden) loadAll(); }, 45000);
+</script>
+</body>
+</html>
